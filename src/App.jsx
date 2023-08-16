@@ -1,18 +1,30 @@
 import "./App.css";
 import ResultCard from "./assets/Chart.jsx";
 import data from "./sample.json";
+import { io } from 'socket.io-client';
+import { useState, useEffect } from 'react';
 
-const dataArray = Object.keys(data).map((questionKey) => ({
-  title: data[questionKey].title,
-  choices: data[questionKey].choices,
-}));
 
-console.log(dataArray);
+const dataArray = [{"title":"Male Representative","choices":{"Person 1":6,"Person 2":3,"Person 3":1}},{"title":"Female Representative","choices":{"Person 1":4,"Person 2":10}}]
 
 export default function App() {
+
+  useEffect(() => {
+    const socket = io('ws://localhost:4040');
+
+    socket.emit('nconn', '1zzB8xGjJcVpJrr-RpZsJU441-x6xcWE3V4SWXKifnpo');
+    socket.on('relay', (data) => {
+      console.log('Connected to server')
+      console.log(data);
+    });
+    return () => {
+      socket.disconnect();
+    };
+}, []);
   const renderCharts = dataArray.map((question) => (
     <ResultCard title={question.title} choices={question.choices} />
   ));
+  
   return (
     <>
       <div className="info">
