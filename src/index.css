@@ -15,8 +15,36 @@
 
 body {
   margin: 0;
-  padding: 30px 90px;
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.live-poll-tracker {
+  color: #fff;
+  font-family: Staatliches;
+  font-size: 58px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.credits {
+  color: #909090;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 5px;
+}
+
+.header {
+  margin: 1rem;
+  border-bottom: 1px solid #909090;
 }

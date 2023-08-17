@@ -114,7 +114,7 @@ body {
   .result-card {
     width: 100%;
   }
-  
+
   .poll-title {
     font-size: 2rem;
   }
@@ -124,7 +124,7 @@ body {
   .result-card {
     width: 48%;
   }
-  
+
   .poll-title {
     font-size: 2.5rem;
   }
@@ -134,8 +134,12 @@ body {
   .result-card {
     width: 45%;
   }
-  
+
   .poll-title {
     font-size: 3rem;
   }
+}
+
+.main {
+  padding: 0px 90px;
 }

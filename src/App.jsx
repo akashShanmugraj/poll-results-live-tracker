@@ -1,8 +1,8 @@
 import "./App.css";
 import ResultCard from "./assets/Chart.jsx";
 import data from "./sample.json";
-import { io } from 'socket.io-client';
-import { useState, useEffect } from 'react';
+import { io } from "socket.io-client";
+import { useState, useEffect } from "react";
 
 function objecttoArray(data) {
   const dataArray = Object.keys(data).map((questionKey) => ({
@@ -12,10 +12,9 @@ function objecttoArray(data) {
   return dataArray;
 }
 
-
-const socket = io('ws://localhost:4040');
-socket.emit('nconn', '1zzB8xGjJcVpJrr-RpZsJU441-x6xcWE3V4SWXKifnpo');
-socket.on('load', (data) => {
+const socket = io("ws://localhost:4040");
+socket.emit("nconn", "1zzB8xGjJcVpJrr-RpZsJU441-x6xcWE3V4SWXKifnpo");
+socket.on("load", (data) => {
   console.log("DATALOAD");
   dataArray = objecttoArray(data);
 });
@@ -24,10 +23,10 @@ export default function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    socket.on('relay', (data) => {
+    socket.on("relay", (data) => {
       setData(objecttoArray(data));
     });
-    socket.on('load', (data) => {
+    socket.on("load", (data) => {
       console.log("DATALOAD");
       setData(objecttoArray(data));
     });
@@ -38,9 +37,9 @@ export default function App() {
   const globalRenderCharts = dataArray.map((question) => (
     <ResultCard title={question.title} choices={question.choices} />
   ));
-  
+
   return (
-    <>
+    <div className="main">
       <div className="info">
         <h3 className="results">Results</h3>
         <h1 className="sem-poll">Semester 3 CR Poll</h1>
@@ -49,6 +48,6 @@ export default function App() {
         </span>
       </div>
       <div className="result-cards-container">{globalRenderCharts}</div>
-    </>
+    </div>
   );
 }
