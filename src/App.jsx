@@ -21,6 +21,11 @@ socket.on("load", (data) => {
 
 export default function App() {
   const [data, setData] = useState([]);
+  const [isLive, setIsLive] = useState(true);
+
+  const handleClick = () => {
+    setIsLive(!isLive);
+  };
 
   useEffect(() => {
     socket.on("relay", (data) => {
@@ -29,6 +34,10 @@ export default function App() {
     socket.on("load", (data) => {
       console.log("DATALOAD");
       setData(objecttoArray(data));
+    });
+    socket.on("stop", (data) => {
+      console.log("STOP");
+      setIsLive(false);
     });
   }, []);
 
@@ -43,10 +52,12 @@ export default function App() {
       <div className="info">
         <h3 className="results">Results</h3>
         <h1 className="sem-poll">Semester 3 CR Poll</h1>
-        <span className="live">
-          <p>• LIVE</p>
-        </span>
-      </div>
+        <p className="form-host-info">Form hosting by S Akash (22z255@psgtech.ac.in)</p>
+
+          <p className={isLive ? 'live-active':'live-inactive'} onClick={handleClick}>
+            <b>◉ {isLive ? 'LIVE':'CLOSED'}</b>
+          </p>
+        </div>
       <div className="result-cards-container">{globalRenderCharts}</div>
     </div>
   );
