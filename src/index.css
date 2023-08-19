@@ -37,11 +37,11 @@ p {
 .credits {
   color: #909090;
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .header {
