@@ -12,8 +12,8 @@ function objecttoArray(data) {
   return dataArray;
 }
 
-const socket = io("ws://localhost:4040");
-socket.emit("nconn", "1xRCUrDrctRtHAAxFyFowYNpB4pt3Nxuviw4_gm4-bQQ");
+const socket = io("wss://socket.akashshanmugaraj.com");
+socket.emit("nconn", "1TKKFDUWc4k10imc63t1GyQxOHhOiqhQDn-yVAeRQoPg");
 
 const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
 console.log(timeZone);
