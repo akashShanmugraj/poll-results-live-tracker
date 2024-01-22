@@ -12,8 +12,12 @@ function objecttoArray(data) {
   return dataArray;
 }
 
-const socket = io("ws://localhost:4040");
-socket.emit("nconn", "1zzB8xGjJcVpJrr-RpZsJU441-x6xcWE3V4SWXKifnpo");
+const socket = io("wss://socket.akashshanmugaraj.com");
+socket.emit("nconn", "1TKKFDUWc4k10imc63t1GyQxOHhOiqhQDn-yVAeRQoPg");
+
+const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+console.log(timeZone);
+
 socket.on("load", (data) => {
   console.log("DATALOAD");
   dataArray = objecttoArray(data);
@@ -50,11 +54,11 @@ export default function App() {
   return (
     <div className="main">
       <div className="info">
-        <h3 className="results">Results</h3>
-        <h1 className="sem-poll">Semester 3 CR Poll</h1>
-        <p className="form-host-info">Form hosting by S Akash (22z255@psgtech.ac.in)</p>
-
-          <p className={isLive ? 'live-active':'live-inactive'} onClick={handleClick}>
+        <h3 className="results">Best Viewing Experience at 67% zoom</h3>
+        <h1 className="sem-poll">Semester 4 CR Poll</h1>
+        {/* <p className="form-host-info">Form hosting by S Akash (22z255@psgtech.ac.in)</p> */}
+        {/* <p className="form-host-info">This form was closed on 21st September 2023, please wait till 10th December 2023 22:00 IST while I try to add interactiveness</p> */}
+        <p className={isLive ? 'live-active':'live-inactive'} onClick={handleClick}>
             <b>◉ {isLive ? 'LIVE':'CLOSED'}</b>
           </p>
         </div>
