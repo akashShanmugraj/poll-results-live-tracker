@@ -23,9 +23,19 @@ socket.on("load", (data) => {
   dataArray = objecttoArray(data);
 });
 
+// socket.on("stop", (data) => {
+//   console.log("STOP");
+//   setIsLive(false);
+// });
+
+// socket.on("reload", (data) => {
+//   window.location.reload();
+//   setIsLive(true);
+// });
 export default function App() {
   const [data, setData] = useState([]);
   const [isLive, setIsLive] = useState(true);
+  const [doAbort, setDoAbort] = useState(false);
 
   const handleClick = () => {
     setIsLive(!isLive);
@@ -40,28 +50,47 @@ export default function App() {
       setData(objecttoArray(data));
     });
     socket.on("stop", (data) => {
-      console.log("STOP");
+      console.log("STOPPING");
+      setIsLive(false);
+    });
+    socket.on("start", (data) => {
+      console.log("STARTING");
+      setIsLive(true);
+      setDoAbort(false);
+    });
+    socket.on("reload", (data) => {
+      console.log("RELOADING");
+      window.location.reload();
+      setIsLive(true);
+    });
+    socket.on("abort", (data) => {
+      console.log("ABORTING");
+      setDoAbort(true);
       setIsLive(false);
     });
   }, []);
 
-  const dataArray = objecttoArray(data);
+  var dataArray = data;
 
-  const globalRenderCharts = dataArray.map((question) => (
+  var globalRenderCharts = doAbort ? "Don't Cheat" : dataArray.map((question) => (
     <ResultCard title={question.title} choices={question.choices} />
   ));
+  
 
   return (
     <div className="main">
       <div className="info">
         <h3 className="results">Best Viewing Experience at 67% zoom</h3>
-        <h1 className="sem-poll">Semester 4 CR Poll</h1>
+        <h1 className={doAbort? "cheat-notice" : "sem-poll"}>{doAbort ? "🫵 tried to cheat in a CR Poll 😒" : "Semester 4 CR Poll"}</h1>
         {/* <p className="form-host-info">Form hosting by S Akash (22z255@psgtech.ac.in)</p> */}
         {/* <p className="form-host-info">This form was closed on 21st September 2023, please wait till 10th December 2023 22:00 IST while I try to add interactiveness</p> */}
-        <p className={isLive ? 'live-active':'live-inactive'} onClick={handleClick}>
-            <b>◉ {isLive ? 'LIVE':'CLOSED'}</b>
-          </p>
-        </div>
+        <p
+          className={isLive ? "live-active" : "live-inactive"}
+          onClick={handleClick}
+        >
+          <b>◉ {isLive ? "LIVE" : "CLOSED"}</b>
+        </p>
+      </div>
       <div className="result-cards-container">{globalRenderCharts}</div>
     </div>
   );
