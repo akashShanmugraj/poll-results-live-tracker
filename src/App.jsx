@@ -12,7 +12,7 @@ function objecttoArray(data) {
   return dataArray;
 }
 
-const socket = io("wss://socket.akashshanmugaraj.com");
+const socket = io("ws://localhost:4040");
 socket.emit("nconn", "1xRCUrDrctRtHAAxFyFowYNpB4pt3Nxuviw4_gm4-bQQ");
 
 const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
@@ -55,11 +55,11 @@ export default function App() {
     <div className="main">
       <div className="info">
         <h3 className="results">Best Viewing Experience at 67% zoom</h3>
-        <h1 className="sem-poll">Semester 3 CR Poll</h1>
-        <p className="form-host-info">Form hosting by S Akash (22z255@psgtech.ac.in)</p>
-        <p className="form-host-info">This form was closed on 21st September 2023, please wait till 10th December 2023 22:00 IST while I try to add interactiveness</p>
-          <p className='live-inactive'>
-            <b>◉ CLOSED</b>
+        <h1 className="sem-poll">Semester 4 CR Poll</h1>
+        {/* <p className="form-host-info">Form hosting by S Akash (22z255@psgtech.ac.in)</p> */}
+        {/* <p className="form-host-info">This form was closed on 21st September 2023, please wait till 10th December 2023 22:00 IST while I try to add interactiveness</p> */}
+        <p className={isLive ? 'live-active':'live-inactive'} onClick={handleClick}>
+            <b>◉ {isLive ? 'LIVE':'CLOSED'}</b>
           </p>
         </div>
       <div className="result-cards-container">{globalRenderCharts}</div>
