@@ -29,10 +29,6 @@ export default function App() {
   const [isLive, setIsLive] = useState(true);
   const [doAbort, setDoAbort] = useState(false);
 
-  const handleClick = () => {
-    setIsLive(!isLive);
-  };
-
   useEffect(() => {
     socket.on("relay", (data) => {
       setData(objecttoArray(data));
@@ -78,7 +74,6 @@ export default function App() {
         {/* <p className="form-host-info">This form was closed on 21st September 2023, please wait till 10th December 2023 22:00 IST while I try to add interactiveness</p> */}
         <p
           className={isLive ? "live-active" : "live-inactive"}
-          onClick={handleClick}
         >
           <b>◉ {isLive ? "LIVE" : "CLOSED"}</b>
         </p>
