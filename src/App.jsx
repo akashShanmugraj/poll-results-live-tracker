@@ -13,7 +13,7 @@ function objecttoArray(data) {
 }
 
 const socket = io("wss://socket.akashshanmugaraj.com");
-socket.emit("nconn", "1M2p0WgGQDTe-Pt8DO-8JK0nfgoRkr1apqiqKqsyzacQ");
+socket.emit("nconn", "1_Z8uc2EuODPHkN9t3S-ySEjh6tRATPjTH8qu8DeLMgw");
 
 const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
 console.log(timeZone);
