@@ -81,8 +81,7 @@ export default function App() {
     <div className="main">
       <div className="info">
         <h3 className="results">Best Viewing Experience at 67% zoom</h3>
-        <h1 className={doAbort? "cheat-notice" : "sem-poll"}>{doAbort ? "🫵 tried to cheat in a CR Poll 😒" : "Live Poll Demonstration"}</h1>
-        <h3 className="results">Try this out live for yourself at <a href="https://forms.gle/fmciUA5iAzEttwXT6">here</a></h3>
+        <h1 className={doAbort? "cheat-notice" : "sem-poll"}>{doAbort ? "🫵 tried to cheat in a CR Poll 😒" : "Semester 6 CR Poll"}</h1>
 
         {/* <p className="form-host-info">This form was closed on 21st September 2023, please wait till 10th December 2023 22:00 IST while I try to add interactiveness</p> */}
         <p
